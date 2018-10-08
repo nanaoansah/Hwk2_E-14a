@@ -8,10 +8,10 @@ d3.json("/load_data", function (error, json_data) {
   if(!error){
      data = json_data['users'];
      map = data.map(function(d,i){ return parseFloat(d.age); })
-     map2 = data.map(function(d,i){ return i; })
+     //map2 = data.map(function(d,i){ return i; })
      console.log("Data LOADED!")
      createVis()
-     //console.log(map)
+     //console.log(map2)
   }
 
   else{
@@ -25,10 +25,9 @@ function createVis(){
     // visualize the total number of users
     // use txt variable defined above
 
-
     txt = d3.select("#total_users_text")
       .append("text");
-    console.log("appeneed")
+    //console.log("appeneed")
 
     // Part 1
 
@@ -61,29 +60,6 @@ function createVis(){
 
     // ------ YOUR CODE GOES HERE --------
 
-   //  //var test_data = [50, 100, 150, 200, 250]
-   //  var xScale = d3.scaleBand()
-   // .domain(map2)
-   // .range([0, width])
-   // .padding(0.05)
-
-    // svg.selectAll("rect")
-    // .data(data)
-    // .enter()
-    // .append("rect")
-    // .attr("x", function(d,i){
-    //   return xScale(i);
-    //   })
-    // .attr("y", function(d){
-    //   return height-d.age;
-    // })
-    //
-    // .attr("width", xScale.bandwidth)
-    // .attr("height", function(d){
-    //   return d.age;
-    // })
-    // .style("fill","blue")
-
     // a. Create x and y scale
     var x = d3.scaleLinear()
         .rangeRound([0, width])
@@ -91,8 +67,8 @@ function createVis(){
 
         // b. Create bins and histogram
     var bins = d3.histogram()
-        //.domain(x.domain())
-        //.thresholds(x.ticks(10))
+        .domain(x.domain())
+        .thresholds(x.ticks(10))
         (map);
 
     var y = d3.scaleLinear()
@@ -102,8 +78,6 @@ function createVis(){
           })
         ])
         .range([height, 0]);
-
-
 
     // c. Create bars (rect)
     var bar = g.selectAll("rect")
@@ -133,6 +107,5 @@ function createVis(){
         //.attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
-
 
 }

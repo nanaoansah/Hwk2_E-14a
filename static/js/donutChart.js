@@ -15,9 +15,9 @@ d3.json("/load_data", function (data) {
     .key(function(d) { return d.prog_lang; }).rollup(function(v) { return v.length; })
     .entries(data);
 
-    console.log(prog_langs_data);
-    console.log(prog_langs_data[1]['key']);
-    console.log(prog_langs_data[1]['value']);
+    //console.log(prog_langs_data);
+    // console.log(prog_langs_data[1]['key']);
+    // console.log(prog_langs_data[1]['value']);
 
     // var part_1_keys = prog_langs_data.map(function(d,i){ return d.key; });
     // console.log(part_1_keys);
@@ -54,9 +54,6 @@ d3.json("/load_data", function (data) {
     var color = d3.scaleOrdinal()
     .domain(prog_langs_data)
     .range(hex_color_values);
-
-
-
 
   var arc = d3.arc()
   .innerRadius(radius - thickness)
