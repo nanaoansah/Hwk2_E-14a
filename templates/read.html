@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+<!-- Header -->
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script>
+function confirm_dlt() {
+  alert("User Deleted!")
+}
+</script>
+
+
+    <header class="masthead d-flex">
+      <div class="container text-center my-auto">
+          <div class="page-title">
+              <h1 class="mb-1">Manage Users</h1>
+          </div>
+
+          <div class="row">
+            <table>
+              <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Prog Lang</th>
+                <th>Exp(Years)</th>
+                <th>Age</th>
+                <th>Hwk1 Hours</th>
+              </tr>
+              {% for users in users %}
+              <tr>
+                    <td>{{ users.username }}</td>
+                    <td>{{ users.first_name }}</td>
+                    <td>{{ users.last_name }}</td>
+                    <td>{{ users.prog_lang }}</td>
+                    <td>{{ users.experience_yr }}</td>
+                    <td>{{ users.age }}</td>
+                    <td>{{ users.hw1_hrs }}</td>
+                    <td><a class="btn btn-primary btn-xl js-scroll-trigger" href="{{url_for('update_user', uid=users.uid)}}">Edit</a></td>
+                    <td><a class="btn btn-primary btn-xl js-scroll-trigger" href="{{url_for('dlt_user', uid=users.uid)}}" style="background-color: red;" onclick="confirm_dlt()">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+
+  </div>
+</header>
+
+
+
+{% endblock %}

@@ -12,3 +12,4 @@ class UsersForm(FlaskForm):
   age = IntegerField('Age', validators=[DataRequired()])
   hw1_hrs = FloatField('Hours Spent on HW 1', validators=[DataRequired()])
   add_u = SubmitField('Add')
+  upd_u = SubmitField('Update')
